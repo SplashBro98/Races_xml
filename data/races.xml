@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<races xmlns="http://www.example.com/races"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.example.com/races">
+
+    <horse-race title="Welsh Open" organizer="Stephen Hendry">
+        <date>2018-11-13</date>
+        <time>18:00</time>
+        <place>
+            <city>Cardiff</city>
+            <street>Green st</street>
+            <house-number>12</house-number>
+        </place>
+        <ticket-price>120.5</ticket-price>
+        <horses>
+            <horse>
+                <nickname>White horse</nickname>
+                <age>8</age>
+                <breed>arabian</breed>
+            </horse>
+        </horses>
+    </horse-race>
+
+    <horse-race title="Britain Grand Prix">
+        <date>2018-12-21</date>
+        <time>17:00</time>
+        <place>
+            <city>London</city>
+            <street>Baker street</street>
+            <house-number>221</house-number>
+        </place>
+        <ticket-price>130</ticket-price>
+        <horses>
+            <horse>
+                <nickname>Dark horse</nickname>
+                <age>6</age>
+                <breed>andalusian</breed>
+            </horse>
+            <horse>
+                <nickname>Brown horse</nickname>
+                <age>5</age>
+                <breed>belgian</breed>
+            </horse>
+        </horses>
+    </horse-race>
+</races>

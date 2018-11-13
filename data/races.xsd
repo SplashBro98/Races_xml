@@ -1,0 +1,125 @@
+<schema elementFormDefault="qualified"
+        xmlns="http://www.w3.org/2001/XMLSchema:attribute"
+        targetNamespace="http://www.example.com/races"
+        xmlns:tns="http://www.example.com/races"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.w3.org/2001/XMLSchema:attribute ">
+
+    <element name="races">
+        <complexType>
+            <sequence>
+                <element name="race" type="tns:race" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="race" abstract="true"/>
+
+    <complexType name="race">
+        <attribute name="title" use="required">
+            <simpleType>
+                <restriction base="ID">
+                    <pattern value="\\w+"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+        <attribute name="organizer" use="optional" default="Queen Elizabeth">
+            <simpleType>
+                <restriction base="string">
+                    <pattern value="\\w+ \\w+"/>
+                    <minLength value="5"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+        <sequence>
+            <element name="date" type="date"/>
+            <element name="time" type="time"/>
+            <element name="place">
+                <complexType>
+                    <sequence>
+                        <element name="city" type="string"/>
+                        <element name="street" type="string"/>
+                        <element name="house-number" type="positiveInteger"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ticket-price">
+                <simpleType>
+                    <restriction base="positiveInteger">
+                        <maxExclusive value="10000"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+
+    <complexType name="horse-race">
+        <complexContent>
+            <extension base="tns:race">
+                <sequence>
+                    <element name="horses">
+                        <complexType>
+                            <sequence>
+                                <element name="horse" type="tns:horse" minOccurs="1" maxOccurs="12"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="horse">
+        <sequence>
+            <element name="nickname" type="string"/>
+            <element name="age" type="positiveInteger"/>
+            <element name="horseBreed" type="tns:horse-horseBreed"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="dog-race">
+        <complexContent>
+            <extension base="tns:race">
+                <sequence>
+                    <element name="dogs">
+                        <complexType>
+                            <sequence>
+                                <element name="dog" type="tns:dog" minOccurs="1" maxOccurs="10"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+
+    <complexType name="dog">
+        <sequence>
+            <element name="nickname" type="string"/>
+            <element name="age" type="positiveInteger"/>
+            <element name="horseBreed" type="tns:dog-horseBreed"/>
+        </sequence>
+    </complexType>
+
+
+    <simpleType name="horse-horseBreed">
+        <restriction base="string">
+            <enumeration value="andalusian"/>
+            <enumeration value="arabian"/>
+            <enumeration value="clydesdale"/>
+            <enumeration value="belgian"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="dog-horseBreed">
+        <restriction base="string">
+            <enumeration value="beagle"/>
+            <enumeration value="shepherd"/>
+            <enumeration value="boxer"/>
+            <enumeration value="doberman"/>
+        </restriction>
+    </simpleType>
+
+
+</schema>
