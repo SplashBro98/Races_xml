@@ -1,4 +1,4 @@
-package com.epam.races.entity.dog;
+package com.epam.races.entity;
 
 public enum DogBreed {
     BOXER,

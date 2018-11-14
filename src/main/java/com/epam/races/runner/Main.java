@@ -1,53 +1,49 @@
 package com.epam.races.runner;
 
-import com.epam.races.parser.sax.HorseRaceHandler;
-import org.apache.xerces.parsers.DOMParser;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
+import com.epam.races.parser.dom.DOMRaceHandler;
+import com.epam.races.parser.sax.SAXRaceHandler;
+import com.epam.races.parser.stax.StAXRaceHandler;
+import org.xml.sax.*;
 
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        String filename = "data\\races.xml";
-        DOMParser parser = new DOMParser();
-        try {
-            //parser.setFeature("http://xml.org/sax/features/validation", true);
-            parser.parse(filename);
-            System.out.println("Check is finished");
-            XMLReader reader = XMLReaderFactory.createXMLReader();
-            HorseRaceHandler contentHandler = new HorseRaceHandler();
-            reader.setContentHandler(contentHandler);
-            reader.parse("data\\races.xml");
-            contentHandler.getHorseRaces().forEach(r -> System.out.println(r.toString()));
 
-        } catch (SAXNotRecognizedException e) {
+        try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser parser = factory.newSAXParser();
+//
+//            XMLReader reader = parser.getXMLReader();
+//
+//            SAXRaceHandler contentHandler = new SAXRaceHandler();
+//            reader.setContentHandler(contentHandler);
+//            reader.parse("src\\main\\resources\\data.xml");
+//            contentHandler.getRaces().forEach(r -> System.out.println(r.toString()));
+//
+//            System.out.println();
+//            DOMRaceHandler domRaceHandler = new DOMRaceHandler();
+//            domRaceHandler.createRaceList("src\\main\\resources\\data.xml");
+//            domRaceHandler.getRaces().forEach(r -> System.out.println(r.toString()));
+
+            StAXRaceHandler raceHandler = new StAXRaceHandler();
+            raceHandler.buildRaceList("src\\main\\resources\\data.xml");
+            raceHandler.getRaces().forEach(r -> System.out.println(r.toString()));
+
+
+        }catch (ParserConfigurationException e){
             e.printStackTrace();
-        } catch (SAXNotSupportedException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        }catch (SAXException e) {
             e.printStackTrace();
         }
-
-//        try {
-////создание SAX-анализатора
-//            XMLReader reader = XMLReaderFactory.createXMLReader();
-//            SimpleHandler contentHandler = new SimpleHandler();
-//            reader.setContentHandler(contentHandler);
-//            reader.parse("data\\races.xml");
-//        } catch (SAXException e) {
-//            e.printStackTrace();
-//            System.out.print("ошибка SAX парсера");
 //        } catch (IOException e) {
 //            e.printStackTrace();
-//            System.out.print("ошибка I/О потока");
 //        }
     }
 }

@@ -1,11 +1,13 @@
-package com.epam.races.entity.race;
+package com.epam.races.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public abstract class Race {
+public abstract class Race<T> {
+    public static final String DEFAULT_ORGANIZER = "Queen Elizabeth";
+
     private String title;
-    private String organizer;
+    private String organizer = DEFAULT_ORGANIZER;
     private LocalDate date;
     private LocalTime time;
     private Place place = new Place();
@@ -108,6 +110,10 @@ public abstract class Race {
             this.houseNumber = houseNumber;
         }
     }
+
+    public abstract void addElement(T t);
+
+
 
     @Override
     public String toString() {

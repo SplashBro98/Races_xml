@@ -1,36 +1,22 @@
 <schema elementFormDefault="qualified"
-        xmlns="http://www.w3.org/2001/XMLSchema:attribute"
+        xmlns="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://www.example.com/races"
-        xmlns:tns="http://www.example.com/races"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.w3.org/2001/XMLSchema:attribute ">
+        xmlns:tns="http://www.example.com/races">
 
     <element name="races">
         <complexType>
             <sequence>
-                <element name="race" type="tns:race" minOccurs="1" maxOccurs="unbounded"/>
+                <element ref="tns:race" minOccurs="1" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
 
-    <element name="race" abstract="true"/>
+    <element name="race" type="tns:Race" abstract="true"/>
+    <element name="horse-race" type="tns:Horse-race" substitutionGroup="tns:race"/>
+    <element name="dog-race" type="tns:Dog-race" substitutionGroup="tns:race"/>
 
-    <complexType name="race">
-        <attribute name="title" use="required">
-            <simpleType>
-                <restriction base="ID">
-                    <pattern value="\\w+"/>
-                </restriction>
-            </simpleType>
-        </attribute>
-        <attribute name="organizer" use="optional" default="Queen Elizabeth">
-            <simpleType>
-                <restriction base="string">
-                    <pattern value="\\w+ \\w+"/>
-                    <minLength value="5"/>
-                </restriction>
-            </simpleType>
-        </attribute>
+
+    <complexType name="Race">
         <sequence>
             <element name="date" type="date"/>
             <element name="time" type="time"/>
@@ -51,16 +37,32 @@
                 </simpleType>
             </element>
         </sequence>
+        <attribute name="title" use="required">
+            <simpleType>
+                <restriction base="ID">
+                    <pattern value="\\w+"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+        <attribute name="organizer" use="optional" default="Queen Elizabeth">
+            <simpleType>
+                <restriction base="string">
+                    <pattern value="\\w+ \\w+"/>
+                    <minLength value="5"/>
+                </restriction>
+            </simpleType>
+        </attribute>
     </complexType>
 
-    <complexType name="horse-race">
+
+    <complexType name="Horse-race">
         <complexContent>
-            <extension base="tns:race">
+            <extension base="tns:Race">
                 <sequence>
                     <element name="horses">
                         <complexType>
                             <sequence>
-                                <element name="horse" type="tns:horse" minOccurs="1" maxOccurs="12"/>
+                                <element name="horse" type="tns:Horse" minOccurs="1" maxOccurs="12"/>
                             </sequence>
                         </complexType>
                     </element>
@@ -69,22 +71,23 @@
         </complexContent>
     </complexType>
 
-    <complexType name="horse">
+
+    <complexType name="Horse">
         <sequence>
             <element name="nickname" type="string"/>
             <element name="age" type="positiveInteger"/>
-            <element name="horseBreed" type="tns:horse-horseBreed"/>
+            <element name="breed" type="tns:horse-breed"/>
         </sequence>
     </complexType>
 
-    <complexType name="dog-race">
+    <complexType name="Dog-race">
         <complexContent>
-            <extension base="tns:race">
+            <extension base="tns:Race">
                 <sequence>
                     <element name="dogs">
                         <complexType>
                             <sequence>
-                                <element name="dog" type="tns:dog" minOccurs="1" maxOccurs="10"/>
+                                <element name="dog" type="tns:Dog" minOccurs="1" maxOccurs="10"/>
                             </sequence>
                         </complexType>
                     </element>
@@ -94,16 +97,16 @@
     </complexType>
 
 
-    <complexType name="dog">
+    <complexType name="Dog">
         <sequence>
             <element name="nickname" type="string"/>
             <element name="age" type="positiveInteger"/>
-            <element name="horseBreed" type="tns:dog-horseBreed"/>
+            <element name="breed" type="tns:dog-breed"/>
         </sequence>
     </complexType>
 
 
-    <simpleType name="horse-horseBreed">
+    <simpleType name="horse-breed">
         <restriction base="string">
             <enumeration value="andalusian"/>
             <enumeration value="arabian"/>
@@ -112,7 +115,7 @@
         </restriction>
     </simpleType>
 
-    <simpleType name="dog-horseBreed">
+    <simpleType name="dog-breed">
         <restriction base="string">
             <enumeration value="beagle"/>
             <enumeration value="shepherd"/>

@@ -1,27 +1,30 @@
-package com.epam.races.entity.race;
+package com.epam.races.parser;
 
 public enum HorseRaceEnum {
     RACES("races"),
+    HORSE_RACE("horse-race"),
     TITLE("title"),
     ORGANIZER("organizer"),
+    HORSES("horses"),
+    HORSE("horse"),
+    PLACE("place"),
     DATE("date"),
     TIME("time"),
-    PLACE("place"),
     CITY("city"),
     STREET("street"),
     HOUSE_NUMBER("house-number"),
     TICKET_PRICE("ticket-price"),
-    HORSES("horses"),
-    HORSE("horse"),
     NICKNAME("nickname"),
     AGE("age"),
     BREED("breed");
-
-
 
     private String value;
 
     HorseRaceEnum(String value) {
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 }

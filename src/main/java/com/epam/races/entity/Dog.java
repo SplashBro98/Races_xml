@@ -1,17 +1,17 @@
-package com.epam.races.entity.horse;
+package com.epam.races.entity;
 
-public class Horse {
+public class Dog {
     private String nickname;
     private int age;
-    private HorseBreed breed;
+    private DogBreed breed;
 
-    public Horse() {
+    public Dog(){
+
     }
-
-    public Horse(String nickname, int age, String breed) {
+    public Dog(String nickname, int age, String dogEnum) {
         this.nickname = nickname;
         this.age = age;
-        this.breed = HorseBreed.valueOf(breed.toUpperCase());
+        this.breed = DogBreed.valueOf(dogEnum.toUpperCase());
     }
 
     public String getNickname() {
@@ -30,17 +30,17 @@ public class Horse {
         this.age = age;
     }
 
-    public HorseBreed getBreed() {
+    public DogBreed getBreed() {
         return breed;
     }
 
-    public void setBreed(HorseBreed horseBreed) {
-        this.breed = horseBreed;
+    public void setBreed(DogBreed dogBreed) {
+        this.breed = dogBreed;
     }
 
     @Override
     public String toString() {
-        return "Horse: " + nickname +
+        return "Dog: " + nickname +
                 ", " + age + " years, " + breed + "\n";
     }
 }

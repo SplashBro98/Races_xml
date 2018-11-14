@@ -1,6 +1,4 @@
-package com.epam.races.entity.race;
-
-import com.epam.races.entity.horse.Horse;
+package com.epam.races.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -8,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class HorseRace extends Race {
+public class HorseRace extends Race<Horse> {
     private List<Horse> horses;
 
     public HorseRace() {
@@ -28,8 +26,10 @@ public class HorseRace extends Race {
         return horses.get(i);
     }
 
-    public void addHorse(Horse horse){
-        horses.add(horse);
+
+    @Override
+    public void addElement(Horse h) {
+        horses.add(h);
     }
 
     @Override
