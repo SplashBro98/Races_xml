@@ -1,4 +1,4 @@
-package com.epam.races.parser.dom;
+package com.epam.races.parser;
 
 import com.epam.races.entity.*;
 import org.w3c.dom.Document;
@@ -63,7 +63,7 @@ public class DOMRaceHandler {
 
         race.setTitle(raceElement.getAttribute("title"));
         String organizer = raceElement.getAttribute("organizer");
-        if(organizer != null) {
+        if(!organizer.equals("")) {
             race.setOrganizer(organizer);
         }
 
@@ -97,7 +97,7 @@ public class DOMRaceHandler {
 
         race.setTitle(raceElement.getAttribute("title"));
         String organizer = raceElement.getAttribute("organizer");
-        if(organizer != null) {
+        if(!organizer.equals("")) {
             race.setOrganizer(organizer);
         }
 

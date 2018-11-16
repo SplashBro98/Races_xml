@@ -1,4 +1,4 @@
-package com.epam.races.parser.sax;
+package com.epam.races.parser;
 
 import com.epam.races.entity.*;
 import com.epam.races.parser.DogRaceEnum;

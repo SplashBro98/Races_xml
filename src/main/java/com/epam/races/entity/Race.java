@@ -7,13 +7,14 @@ public abstract class Race<T> {
     public static final String DEFAULT_ORGANIZER = "Queen Elizabeth";
 
     private String title;
-    private String organizer = DEFAULT_ORGANIZER;
+    private String organizer;
     private LocalDate date;
     private LocalTime time;
     private Place place = new Place();
     private double ticketPrice;
 
     public Race() {
+        organizer = DEFAULT_ORGANIZER;
     }
 
     public Race(String title, String organizer, LocalDate date, LocalTime time, double ticketPrice) {
@@ -108,6 +109,11 @@ public abstract class Race<T> {
 
         public void setHouseNumber(int houseNumber) {
             this.houseNumber = houseNumber;
+        }
+
+        @Override
+        public String toString() {
+            return place.city + ", " + place.street + ", " + place.houseNumber;
         }
     }
 

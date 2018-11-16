@@ -42,31 +42,31 @@
         </horses>
     </horse-race>
 
-    <!--<dog-race title="Scottish Open" organizer="Sir Charles">-->
-        <!--<date>2010-12-10</date>-->
-        <!--<time>04:20</time>-->
-        <!--<place>-->
-            <!--<city>Edinburgh</city>-->
-            <!--<street>Anfield st</street>-->
-            <!--<house-number>30</house-number>-->
-        <!--</place>-->
-        <!--<ticket-price>99.5</ticket-price>-->
-        <!--<dogs>-->
-            <!--<dog>-->
-                <!--<nickname>Alfie</nickname>-->
-                <!--<age>3</age>-->
-                <!--<breed>shepherd</breed>-->
-            <!--</dog>-->
-            <!--<dog>-->
-                <!--<nickname>Howard</nickname>-->
-                <!--<age>4</age>-->
-                <!--<breed>doberman</breed>-->
-            <!--</dog>-->
-            <!--<dog>-->
-                <!--<nickname>Craig</nickname>-->
-                <!--<age>5</age>-->
-                <!--<breed>boxer</breed>-->
-            <!--</dog>-->
-        <!--</dogs>-->
-    <!--</dog-race>-->
+    <dog-race title="Scottish Open" organizer="Sir Charles">
+        <date>2010-12-10</date>
+        <time>04:20</time>
+        <place>
+            <city>Edinburgh</city>
+            <street>Anfield st</street>
+            <house-number>30</house-number>
+        </place>
+        <ticket-price>99.5</ticket-price>
+        <dogs>
+            <dog>
+                <nickname>Alfie</nickname>
+                <age>3</age>
+                <breed>shepherd</breed>
+            </dog>
+            <dog>
+                <nickname>Howard</nickname>
+                <age>4</age>
+                <breed>doberman</breed>
+            </dog>
+            <dog>
+                <nickname>Craig</nickname>
+                <age>5</age>
+                <breed>boxer</breed>
+            </dog>
+        </dogs>
+    </dog-race>
 </races>

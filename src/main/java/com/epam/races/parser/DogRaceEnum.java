@@ -1,7 +1,6 @@
 package com.epam.races.parser;
 
 public enum DogRaceEnum {
-    RACES("races"),
     DOG_RACE("dog-race"),
     TITLE("title"),
     ORGANIZER("organizer"),
