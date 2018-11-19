@@ -1,26 +1,26 @@
 package com.epam.races.builder;
 
 import com.epam.races.entity.Race;
-import com.epam.races.parser.DOMRaceHandler;
+import com.epam.races.parser.DOMRaceParser;
 
-import javax.xml.parsers.DocumentBuilder;
+import java.io.InputStream;
 import java.util.List;
 
 public class DOMRaceBuilder extends RaceBuilder {
-    private DOMRaceHandler raceHandler;
+    private DOMRaceParser raceHandler;
 
     public DOMRaceBuilder(List<Race> races) {
         super(races);
-        raceHandler = new DOMRaceHandler();
+        raceHandler = new DOMRaceParser();
     }
 
     public DOMRaceBuilder() {
-        raceHandler = new DOMRaceHandler();
+        raceHandler = new DOMRaceParser();
     }
 
     @Override
-    public void buildRaceList(String filename) {
-        raceHandler.createRaceList(filename);
+    public void buildRaceList(InputStream stream) {
+        raceHandler.createRaceList(stream);
         setRaces(raceHandler.getRaces());
     }
 }

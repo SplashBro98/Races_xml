@@ -1,17 +1,19 @@
 package com.epam.races.builder;
 
-import com.epam.races.parser.StAXRaceHandler;
+import com.epam.races.parser.StAXRaceParser;
+
+import java.io.InputStream;
 
 public class StAXRaceBuilder extends RaceBuilder {
-    private StAXRaceHandler raceHandler;
+    private StAXRaceParser raceHandler;
 
     public StAXRaceBuilder() {
-        raceHandler = new StAXRaceHandler();
+        raceHandler = new StAXRaceParser();
     }
 
     @Override
-    public void buildRaceList(String filename) {
-        raceHandler.createRaceList(filename);
+    public void buildRaceList(InputStream stream) {
+        raceHandler.createRaceList(stream);
         setRaces(raceHandler.getRaces());
     }
 }

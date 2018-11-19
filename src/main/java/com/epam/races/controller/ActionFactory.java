@@ -1,0 +1,41 @@
+package com.epam.races.controller;
+
+import com.epam.races.command.*;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.EnumMap;
+
+public enum ActionFactory {
+    INSTANCE;
+
+    public static final String PARAM_COMMAND = "command";
+    private static Logger logger = LogManager.getLogger(ActionFactory.class);
+
+    private EnumMap<CommandType, Command> commands = new EnumMap<>(CommandType.class);
+
+    public void addCommand(CommandType type, Command command){
+        commands.put(type, command);
+    }
+
+    ActionFactory() {
+        commands.put(CommandType.PARSE,new ParseCommand());
+        commands.put(CommandType.NO, new NoCommand());
+        commands.put(CommandType.RUSSIAN, new RussianCommand());
+        commands.put(CommandType.ENGLISH, new EnglishCommand());
+        commands.put(CommandType.TO_START, new ToStartCommand());
+    }
+
+    public Command getCommand(HttpServletRequest req){
+        String commandType = req.getParameter(PARAM_COMMAND);
+        logger.log(Level.INFO, "Command: " + commandType);
+
+        Command command = commands.get(CommandType.valueOf(commandType.replace(' ','_').toUpperCase()));
+        if(command == null){
+            command = new NoCommand();
+        }
+        return command;
+    }
+}

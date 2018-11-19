@@ -1,9 +1,8 @@
 package com.epam.races.builder;
 
+import com.epam.races.parser.ParserType;
+
 public class RaceBuilderFactory {
-    private enum ParserType{
-        STAX, SAX, DOM;
-    }
 
     public RaceBuilder createRaceBuilder(String type){
         ParserType parserType = ParserType.valueOf(type.toUpperCase());

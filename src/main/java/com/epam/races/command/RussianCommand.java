@@ -10,7 +10,7 @@ import java.io.IOException;
 public class RussianCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String execute(HttpServletRequest req) throws ServletException, IOException {
         req.setAttribute("language","ru_RU");
         return ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.START_PAGE_PATH);
     }

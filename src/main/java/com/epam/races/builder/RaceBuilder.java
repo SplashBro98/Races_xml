@@ -2,6 +2,7 @@ package com.epam.races.builder;
 
 import com.epam.races.entity.Race;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,5 +26,5 @@ public abstract class RaceBuilder {
         this.races = races;
     }
 
-    public abstract void buildRaceList(String filename);
+    public abstract void buildRaceList(InputStream stream);
 }

@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ReturnCommand implements Command {
+public class ToStartCommand implements Command {
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String execute(HttpServletRequest req) throws ServletException, IOException {
         return ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.START_PAGE_PATH);
     }
 }

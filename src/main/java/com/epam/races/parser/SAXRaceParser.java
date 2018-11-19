@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
-public class SAXRaceHandler implements ContentHandler {
+public class SAXRaceParser implements ContentHandler {
     public static final String XML_TAG_HORSE_RACE = "horse-race";
     public static final String XML_TAG_DOG_RACE = "dog-race";
     public static final String XML_ATTR_TITLE = "title";
@@ -40,11 +40,11 @@ public class SAXRaceHandler implements ContentHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        System.out.println("Parsing is started");
+
     }
     @Override
     public void endDocument() throws SAXException {
-        System.out.println("Parsing is finished");
+
     }
 
     @Override
