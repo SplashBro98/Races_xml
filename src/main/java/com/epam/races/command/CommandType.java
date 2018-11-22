@@ -5,5 +5,7 @@ public enum CommandType {
     NO,
     ENGLISH,
     RUSSIAN,
-    TO_START
+    TO_START,
+    LOGIN,
+    TO_LOGIN
 }

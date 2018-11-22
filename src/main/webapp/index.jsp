@@ -9,10 +9,9 @@
 <html>
 <head>
     <title>Index_JSP</title>
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<jsp:forward page="/jsp/start.jsp"/>
+<jsp:forward page="/jsp/login.jsp"/>
 
 </body>
 </html>

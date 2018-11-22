@@ -1,5 +1,6 @@
-package com.epam.races.command;
+package com.epam.races.command.impl;
 
+import com.epam.races.command.Command;
 import com.epam.races.controller.ConfigurationManager;
 
 import javax.servlet.ServletException;

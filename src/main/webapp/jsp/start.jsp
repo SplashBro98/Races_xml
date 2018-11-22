@@ -16,7 +16,8 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="select-field">
+<div class="form-style-2">
+    <c:import url="test.jsp"/>
     <form method="POST" action="controller" enctype="multipart/form-data">
         <input type="hidden" name="command" value="parse">
         <h5>Parser: </h5><input type="text" name="parser" pattern="(sax|dom|stax)" required><br/>

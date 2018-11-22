@@ -1,12 +1,13 @@
-package com.epam.races.command;
+package com.epam.races.command.impl;
 
 import com.epam.races.builder.RaceBuilder;
 import com.epam.races.builder.RaceBuilderFactory;
+import com.epam.races.command.Command;
 import com.epam.races.entity.DogRace;
-import com.epam.races.entity.Horse;
 import com.epam.races.entity.HorseRace;
 import com.epam.races.entity.Race;
 import com.epam.races.controller.ConfigurationManager;
+import com.epam.races.service.ParserService;
 import com.epam.races.validation.ParserValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -14,12 +15,9 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ParseCommand implements Command {
 
@@ -32,26 +30,22 @@ public class ParseCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest req) throws ServletException, IOException {
-        RaceBuilderFactory raceFactory = new RaceBuilderFactory();
-        String page;
+        ParserService service = new ParserService();
 
         String parserType = req.getParameter(PARAM_PARSER);
+        String page;
         logger.log(Level.INFO, "ParserType: " + parserType.toUpperCase());
 
-        ParserValidator validator = new ParserValidator();
-        if(validator.checkParserType(parserType)) {
-            RaceBuilder raceBuilder = raceFactory.createRaceBuilder(parserType);
-            raceBuilder.buildRaceList(req.getPart(PARAM_FILENAME).getInputStream());
-            List<Race> races = raceBuilder.getRaces();
 
-            List<Race> horseRaces = races.stream().filter(r -> r.getClass() == HorseRace.class).
-                    collect(Collectors.toList());
-            List<Race> dogRaces = races.stream().filter(r -> r.getClass() == DogRace.class).
-                    collect(Collectors.toList());
+        if(service.parse(parserType)) {
+            RaceBuilderFactory factory = new RaceBuilderFactory();
+            RaceBuilder raceBuilder = factory.createRaceBuilder(parserType);
 
+            service.setRaceBuilder(raceBuilder);
+            service.createLists(req.getPart(PARAM_FILENAME));
 
-            req.setAttribute(ATTR_HORSE_RACES, horseRaces);
-            req.setAttribute(ATTR_DOG_RACES, dogRaces);
+            req.setAttribute(ATTR_HORSE_RACES, service.getHorseRaces());
+            req.setAttribute(ATTR_DOG_RACES, service.getDogRaces());
             req.setAttribute(PARAM_PARSER, parserType.toUpperCase() + " parser");
             page = ConfigurationManager.INSTANCE.getProperty(ConfigurationManager.MAIN_PAGE_PATH);
         }

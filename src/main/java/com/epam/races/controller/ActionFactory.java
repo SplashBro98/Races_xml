@@ -1,6 +1,7 @@
 package com.epam.races.controller;
 
 import com.epam.races.command.*;
+import com.epam.races.command.impl.*;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,6 +27,8 @@ public enum ActionFactory {
         commands.put(CommandType.RUSSIAN, new RussianCommand());
         commands.put(CommandType.ENGLISH, new EnglishCommand());
         commands.put(CommandType.TO_START, new ToStartCommand());
+        commands.put(CommandType.LOGIN, new LoginCommand());
+        commands.put(CommandType.TO_LOGIN, new ToLoginCommand());
     }
 
     public Command getCommand(HttpServletRequest req){

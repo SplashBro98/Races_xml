@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,8 +31,9 @@ public class BaseServlet extends HttpServlet {
         processRequest(req, resp);
     }
 
-    protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String page;
+
         Command command = ActionFactory.INSTANCE.getCommand(req);
         page = command.execute(req);
 

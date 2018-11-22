@@ -11,6 +11,7 @@
     <title>Error_JSP</title>
 </head>
 <body>
-ERROR
+Incorrect login or password
+<a href="controller?command=to login">Back</a>
 </body>
 </html>

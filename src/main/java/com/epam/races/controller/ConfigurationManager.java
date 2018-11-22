@@ -12,6 +12,7 @@ public enum ConfigurationManager {
     public static final String ERROR_PAGE_PATH = "ERROR_PAGE_PATH";
     public static final String MAIN_PAGE_PATH = "MAIN_PAGE_PATH";
     public static final String START_PAGE_PATH = "START_PAGE_PATH";
+    public static final String LOGIN_PAGE_PATH = "LOGIN_PAGE_PATH";
 
     public String getProperty(String key){
         String str = (String) resourceBundle.getObject(key);
