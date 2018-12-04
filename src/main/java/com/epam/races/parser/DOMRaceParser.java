@@ -105,26 +105,26 @@ public class DOMRaceParser {
             race.setOrganizer(organizer);
         }
 
-        race.setDate(LocalDate.parse(getElementTextContent(raceElement, "date")));
-        race.setTime(LocalTime.parse(getElementTextContent(raceElement, "time")));
-        Double ticketPrice = Double.parseDouble(getElementTextContent(raceElement,"ticket-price"));
+        race.setDate(LocalDate.parse(getElementTextContent(raceElement, DogRaceEnum.DATE.getValue())));
+        race.setTime(LocalTime.parse(getElementTextContent(raceElement, DogRaceEnum.TIME.getValue())));
+        Double ticketPrice = Double.parseDouble(getElementTextContent(raceElement,DogRaceEnum.TICKET_PRICE.getValue()));
         race.setTicketPrice(ticketPrice);
 
         Race.Place place = race.getPlace();
-        Element placeElement = (Element) raceElement.getElementsByTagName("place").item(0);
+        Element placeElement = (Element) raceElement.getElementsByTagName(DogRaceEnum.PLACE.getValue()).item(0);
 
-        place.setCity(getElementTextContent(placeElement, "city"));
-        place.setStreet(getElementTextContent(placeElement, "street"));
-        place.setHouseNumber(Integer.parseInt(getElementTextContent(placeElement, "house-number")));
+        place.setCity(getElementTextContent(placeElement, DogRaceEnum.CITY.getValue()));
+        place.setStreet(getElementTextContent(placeElement, DogRaceEnum.STREET.getValue()));
+        place.setHouseNumber(Integer.parseInt(getElementTextContent(placeElement, DogRaceEnum.HOUSE_NUMBER.getValue())));
 
         Element dogsElement = (Element) raceElement.getElementsByTagName("dogs").item(0);
-        NodeList dogList = dogsElement.getElementsByTagName("dog");
+        NodeList dogList = dogsElement.getElementsByTagName(DogRaceEnum.DOG.getValue());
         for (int i = 0; i < dogList.getLength(); i++) {
             Element dogElement = (Element) dogList.item(i);
             Dog dog = new Dog();
-            dog.setNickname(getElementTextContent(dogElement,"nickname"));
-            dog.setAge(Integer.parseInt(getElementTextContent(dogElement,"age")));
-            dog.setBreed(DogBreed.valueOf(getElementTextContent(dogElement,"breed").toUpperCase()));
+            dog.setNickname(getElementTextContent(dogElement,DogRaceEnum.NICKNAME.getValue()));
+            dog.setAge(Integer.parseInt(getElementTextContent(dogElement,DogRaceEnum.AGE.getValue())));
+            dog.setBreed(DogBreed.valueOf(getElementTextContent(dogElement,DogRaceEnum.BREED.getValue()).toUpperCase()));
             race.addElement(dog);
         }
 

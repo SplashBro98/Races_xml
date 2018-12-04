@@ -81,7 +81,7 @@
     </table>
 
 
-    <a href="/controller?command=to start">To start page</a>
+    <a href="controller?command=to start">To start page</a>
 
 </div>
 

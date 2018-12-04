@@ -1,6 +1,5 @@
-package com.epam.races.controller;
+package com.epam.races.command;
 
-import com.epam.races.command.*;
 import com.epam.races.command.impl.*;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -17,9 +16,6 @@ public enum ActionFactory {
 
     private EnumMap<CommandType, Command> commands = new EnumMap<>(CommandType.class);
 
-    public void addCommand(CommandType type, Command command){
-        commands.put(type, command);
-    }
 
     ActionFactory() {
         commands.put(CommandType.PARSE,new ParseCommand());

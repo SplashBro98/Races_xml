@@ -1,8 +1,6 @@
 package com.epam.races.parser;
 
 import com.epam.races.entity.*;
-import com.epam.races.parser.DogRaceEnum;
-import com.epam.races.parser.HorseRaceEnum;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -23,6 +21,8 @@ public class SAXRaceParser implements ContentHandler {
     public static final String XML_TAG_DOG = "dog";
     public static final int TITLE_POSITION = 0;
     public static final int ORGANIZER_POSITION = 1;
+    public static final char HYPHEN_CHAR = '-';
+    public static final char SPACE_CHAR = '_';
 
     private List<Race> races = new ArrayList<>();
     private Race currentRace;
@@ -94,13 +94,13 @@ public class SAXRaceParser implements ContentHandler {
                     break;
                 }
                 if(currentRace.getClass() == HorseRace.class){
-                    HorseRaceEnum temp = HorseRaceEnum.valueOf(qName.replace('-','_').toUpperCase());
+                    HorseRaceEnum temp = HorseRaceEnum.valueOf(qName.replace(HYPHEN_CHAR, SPACE_CHAR).toUpperCase());
                     if(horseRaceEnumSet.contains(temp)){
                         currentHorseEnum = temp;
                     }
                 }
                 else {
-                    DogRaceEnum temp = DogRaceEnum.valueOf(qName.replace('-','_').toUpperCase());
+                    DogRaceEnum temp = DogRaceEnum.valueOf(qName.replace(HYPHEN_CHAR,SPACE_CHAR).toUpperCase());
                     if(dogRaceEnumSet.contains(temp)){
                         currentDogEnum = temp;
                     }

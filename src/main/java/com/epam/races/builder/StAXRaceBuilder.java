@@ -1,7 +1,6 @@
 package com.epam.races.builder;
 
 import com.epam.races.parser.StAXRaceParser;
-
 import java.io.InputStream;
 
 public class StAXRaceBuilder extends RaceBuilder {

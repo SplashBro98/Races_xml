@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Иван
@@ -5,7 +6,7 @@
   Time: 23:28
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Login_JSP</title>
@@ -22,7 +23,7 @@
         <label>Password:
             <input type="password" name="password" required>
         </label>
-        <input type="submit" value="Big Virgil">
+        <input type="submit" value="Sign In">
     </form>
 </div>
 

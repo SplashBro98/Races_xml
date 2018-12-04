@@ -5,6 +5,7 @@ import com.epam.races.builder.RaceBuilderFactory;
 import com.epam.races.entity.DogRace;
 import com.epam.races.entity.HorseRace;
 import com.epam.races.entity.Race;
+import com.epam.races.exception.ServiceException;
 import com.epam.races.validation.ParserValidator;
 
 import javax.servlet.http.Part;
@@ -28,16 +29,20 @@ public class ParserService {
         return validator.checkParserType(parserType);
     }
 
-    public void createLists(Part part) throws IOException {
+    public void createLists(Part part) throws ServiceException {
 
-        raceBuilder.buildRaceList(part.getInputStream());
-        List<Race> races = raceBuilder.getRaces();
+        try {
+            raceBuilder.buildRaceList(part.getInputStream());
+            List<Race> races = raceBuilder.getRaces();
 
-        horseRaces = races.stream().filter(r -> r.getClass() == HorseRace.class).
-                collect(Collectors.toList());
+            horseRaces = races.stream().filter(r -> r.getClass() == HorseRace.class).
+                    collect(Collectors.toList());
 
-        dogRaces = races.stream().filter(r -> r.getClass() == DogRace.class).
-                collect(Collectors.toList());
+            dogRaces = races.stream().filter(r -> r.getClass() == DogRace.class).
+                    collect(Collectors.toList());
+        }catch (IOException e){
+            throw new ServiceException(e);
+        }
     }
 
     public RaceBuilder getRaceBuilder() {

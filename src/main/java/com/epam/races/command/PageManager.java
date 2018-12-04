@@ -1,8 +1,8 @@
-package com.epam.races.controller;
+package com.epam.races.command;
 
 import java.util.ResourceBundle;
 
-public enum ConfigurationManager {
+public enum PageManager {
     INSTANCE;
 
     private static String BUNDLE_NAME = "config";
